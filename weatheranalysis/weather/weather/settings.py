@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import dj_database_url
 from pathlib import Path
 import os #for static file
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'weather.settings')
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
