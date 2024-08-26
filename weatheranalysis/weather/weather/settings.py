@@ -12,7 +12,12 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import dj_database_url
 from pathlib import Path
 import os #for static file
+#os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'weather.settings')
+
+#from django.core.wsgi import get_wsgi_application
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'weather.settings')
+#application = get_wsgi_application()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -24,12 +29,12 @@ STATIC_DIR = os.path.join(BASE_DIR,'static')
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-a0vv8egqyk!m82=d4oa1fn%o26m5@^$p8a7#s6-x%m(&2+p5wg'
-
+SECRET_KEY = os.environ.get(("SECRET_KEY"))
+#'django-insecure-a0vv8egqyk!m82=d4oa1fn%o26m5@^$p8a7#s6-x%m(&2+p5wg'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "False").lower() == True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS =os.environ.get("ALLOWED_HOST").split(" ")
 
 
 # Application definition
@@ -84,7 +89,8 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-DATABASES["default"]= dj_database_url.parse("postgresql://temperaturedb_user:pxKfH3i2O2jrTWdqxohoH4YUbjSrsNzZ@dpg-cr6ctg5svqrc73c1e6ng-a.oregon-postgres.render.com/temperaturedb")
+database_url = os.environ.get("DATABASE_URL")
+DATABASES["default"]= dj_database_url.parse(database_url)
 #postgresql://temperaturedb_user:pxKfH3i2O2jrTWdqxohoH4YUbjSrsNzZ@dpg-cr6ctg5svqrc73c1e6ng-a.oregon-postgres.render.com/temperaturedb
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
