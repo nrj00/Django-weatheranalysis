@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="content_wrapper" id="app">
+        <h1>Weather</h1>
+        <form method="POST" class="weather-form">
+            {% csrf_token %}
+            <input class="form-control" name="city" placeholder="Enter city name" required>
+            <button class="btn" type="submit">Get weather</button>
+        </form>
+
+        {% if data.city %}
+        <div class="weather_card">
+            <div class="weather_card_img">
+                <img src="{% static 'images/icon.png' %}" alt="Weather Icon" class="weather-icon">
+            </div>
+            <div class="weather_card_infos">
+                <div class="weather_card_infos_title">
+                    {{ data.city }}
+                    <br>
+                    {{ data.description }}
+                </div>
+                <div class="weather_card_infos_temp">
+                    {{ data.celsius_temperature }}°C / {{ data.kelvin_temperature }}°K
+                </div>
+                <div class="bottom">
+                    <hr>
+                    <div class="weather_card_infos_bottom">
+                        Humidity: {{ data.humidity }} | Pressure: {{ data.pressure }} Pa
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Display alert message -->
+        {% if data.alert_message %}
+        <div class="alert">
+            {{ data.alert_message }}
+        </div>
+        {% endif %}
+
+        <!-- Display temperature analysis in one line -->
+        {% if data.min_temp is not None and data.max_temp is not None and data.avg_temp is not None %}
+        <div class="weather_card">
+            <div class="temperature_analysis">
+                <span>Min Temp (24hr): {{ data.min_temp }}°C </span>
+                <span>Max Temp (24hr): {{ data.max_temp }}°C </span>
+                <span>Avg Temp (24hr): {{ data.avg_temp }}°C</span>
+            </div>
+        </div>
+        {% endif %}
+
+        {% elif data.error %}
+            <div class="error">
+                {{ data.error }}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+/* Center content wrapper */
+.content_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Style the weather form */
+.weather-form {
+    margin-top: 2px; /* Reduced margin-top to decrease gap */
+}
+
+.weather-form .form-control {
+    width: 100%;
+    max-width: 300px; /* Adjust width as needed */
+}
+
+.weather-form .btn {
+    margin-top: 5px; /* Reduced margin-top to decrease gap */
+}
+
+/* Weather card styling */
+.weather_card {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 400px; /* Adjust as needed */
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Align icon and text horizontally */
+.weather_card_info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.weather-icon {
+    width: 100px; /* Adjust size as needed */
+    height: 100px; /* Adjust size as needed */
+    object-fit: contain;
+    margin-right: 20px; /* Space between icon and text */
+}
+
+.weather_card_text {
+    text-align: left;
+}
+
+.weather_card_infos_title {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.weather_card_infos_temp {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+.bottom {
+    margin-top: 10px;
+}
+
+.weather_card_infos_bottom {
+    font-size: 0.9em;
+    color: #149138d9;
+}
+
+.error {
+    color: red;
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+.temperature_analysis {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    font-size: 1em;
+    color: #555;
+}
+
+.temperature_analysis span {
+    margin-right: 10px;
+}
+
+.temperature_analysis span:last-child {
+    margin-right: 0;
+}
