@@ -39,20 +39,20 @@
             </div>
         </div>
 
-        <!-- Display alert message -->
+        <!-- alert message -->
         {% if data.alert_message %}
         <div class="alert">
             {{ data.alert_message }}
         </div>
         {% endif %}
 
-        <!-- Display temperature analysis in one line -->
+        <!-- temperature analysis -->
         {% if data.min_temp is not None and data.max_temp is not None and data.avg_temp is not None %}
         <div class="weather_card">
             <div class="temperature_analysis">
-                <span>Min Temp (24hr): {{ data.min_temp }}°C </span>
-                <span>Max Temp (24hr): {{ data.max_temp }}°C </span>
-                <span>Avg Temp (24hr): {{ data.avg_temp }}°C</span>
+                <span>Min Temp (Day): {{ data.min_temp }}°C </span>
+                <span>Max Temp (Day): {{ data.max_temp }}°C </span>
+                <span>Avg Temp (Day): {{ data.avg_temp }}°C</span>
             </div>
         </div>
         {% endif %}

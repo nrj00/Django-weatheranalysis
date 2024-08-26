@@ -10,12 +10,11 @@ def home(request):
     if request.method == 'POST':
         city = request.POST.get('city')
         if city:
-            api_key = '4b4a4879a798f31615b8ed8aa1164ad1'  # Replace with your API key
+            api_key = '4b4a4879a798f31615b8ed8aa1164ad1' 
             url = f'http://api.openweathermap.org/data/2.5/forecast?q={city}&appid={api_key}'
             response = requests.get(url)
             weather_data = response.json()
 
-            # Check if expected data is present
             if 'city' in weather_data and 'list' in weather_data:
                 # Clear existing records for this city
                 TemperatureRecord.objects.filter(city=city).delete()
@@ -29,11 +28,11 @@ def home(request):
                     for entry in weather_data['list']
                 ]
 
-                # Randomly select 24 temperature entries
+                # Randomly select 24 temperature entries # doing this bcs this is assignment
                 if len(temperature_entries) > 24:
                     temperature_entries = random.sample(temperature_entries, 24)
 
-                # Save selected temperature records to the database
+                # Saving selected temperature records to the database
                 for entry in temperature_entries:
                     TemperatureRecord.objects.create(
                         city=city,
@@ -41,13 +40,13 @@ def home(request):
                         timestamp=entry['timestamp']
                     )
 
-                # Perform temperature analysis
+                # here i'm temperature analysis to calculate avg, min and max
                 min_temp, max_temp, avg_temp = analyze_temperature(city)
 
-                # Get weather description
+                # weather description
                 description = weather_data['list'][0]['weather'][0]['description']
                 
-                # Generate an alert message based on the description
+                # alert message based on the description
                 alert_message = generate_alert_message(description)
 
                 data = {
