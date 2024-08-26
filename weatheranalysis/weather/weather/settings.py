@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import dj_database_url
 from pathlib import Path
 import os #for static file
 
@@ -82,8 +82,8 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-
+DATABASES["default"]= dj_database_url.parse("postgresql://temperaturedb_user:pxKfH3i2O2jrTWdqxohoH4YUbjSrsNzZ@dpg-cr6ctg5svqrc73c1e6ng-a.oregon-postgres.render.com/temperaturedb")
+#postgresql://temperaturedb_user:pxKfH3i2O2jrTWdqxohoH4YUbjSrsNzZ@dpg-cr6ctg5svqrc73c1e6ng-a.oregon-postgres.render.com/temperaturedb
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
