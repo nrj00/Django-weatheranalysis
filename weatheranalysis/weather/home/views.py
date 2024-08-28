@@ -53,22 +53,22 @@ def home(request):
                     'city': weather_data['city']['name'],
                     'description': description,
                     'icon': weather_data['list'][0]['weather'][0]['icon'],
-                    'celsius_temperature': temperature_entries[0]['temperature'] if temperature_entries else None,
-                    'kelvin_temperature': weather_data['list'][0]['main']['temp'] if weather_data['list'] else None,
-                    'humidity': weather_data['list'][0]['main']['humidity'] if weather_data['list'] else None,
-                    'pressure': weather_data['list'][0]['main']['pressure'] if weather_data['list'] else None,
+                    'celsius_temperature': temperature_entries[0]['temperature'],
+                    'kelvin_temperature': weather_data['list'][0]['main']['temp'],
+                    'humidity': weather_data['list'][0]['main']['humidity'],
+                    'pressure': weather_data['list'][0]['main']['pressure'],
                     'min_temp': min_temp,
                     'max_temp': max_temp,
                     'avg_temp': avg_temp,
                     'alert_message': alert_message,
                 }
             else:
-                data['error'] = f"City '{city}' does not exist or data is unavailable."
+                data['error'] = f"City '{city}' is unknown city, you should not check the weather of unknown city"
 
     return render(request, 'home.html', {'data': data})
 
 def analyze_temperature(city):
-    """Analyze temperature data for the last 24 hours for the given city."""
+    """Analyze temperature for the given city."""
     now = timezone.now()
     past_24_hours = now - timedelta(hours=24)
     temperature_records = TemperatureRecord.objects.filter(city=city, timestamp__gte=past_24_hours)
@@ -84,7 +84,7 @@ def analyze_temperature(city):
     return min_temp, max_temp, avg_temp
 
 def generate_alert_message(description):
-    """Generate an alert message based on the weather description."""
+    """alert message on the weather description only."""
     alert_keywords = {
         "rain": "Carry an umbrella! It looks like it's going to rain.",
         "clear": "It's a clear day. Enjoy the sunshine!",
