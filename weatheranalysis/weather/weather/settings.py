@@ -127,7 +127,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # for static files in the project root
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # trying For deployment
+STATIC_ROOT = os.path.join(BASE_DIR, 'weather', 'staticfiles')  # trying For deployment
 
 
 # Default primary key field type
