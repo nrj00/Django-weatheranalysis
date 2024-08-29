@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import dj_database_url
 from pathlib import Path
 import os #for static file
-
+from django.core.wsgi import get_wsgi_application
 
 
 
