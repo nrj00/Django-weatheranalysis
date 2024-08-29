@@ -32,7 +32,7 @@ STATIC_DIR = os.path.join(BASE_DIR,'static')
 SECRET_KEY = 'django-insecure-a0vv8egqyk!m82=d4oa1fn%o26m5@^$p8a7#s6-x%m(&2+p5wg'
 #'django-insecure-a0vv8egqyk!m82=d4oa1fn%o26m5@^$p8a7#s6-x%m(&2+p5wg'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS =['*']
 # Application definition
@@ -55,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'weather.urls'
